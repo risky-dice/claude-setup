@@ -1,0 +1,26 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "gosu",
+  "description": "새 노트북에서 쓰는 스킬 묶음 — 학교 문서 작업 둘, 코딩 모드 하나",
+  "owner": { "name": "이용선" },
+  "plugins": [
+    {
+      "name": "jeongsan",
+      "description": "학교회계 목적사업비 정산 검증 — 16개 룰로 기안·견적서 검산, 집행내역서 생성",
+      "source": { "source": "github", "repo": "risky-dice/jeongsan" },
+      "category": "productivity"
+    },
+    {
+      "name": "live-editor",
+      "description": "한글(HWP/HWPX)·PDF를 대화창에서 실시간 편집, 미리보기 형광펜 표시",
+      "source": { "source": "github", "repo": "risky-dice/live-editor" },
+      "category": "productivity"
+    },
+    {
+      "name": "ponytail",
+      "description": "가장 게으른 해법을 강제하는 코딩 모드 (외부 스킬)",
+      "source": { "source": "github", "repo": "DietrichGebert/ponytail" },
+      "category": "productivity"
+    }
+  ]
+}
