@@ -25,7 +25,7 @@ claude plugin marketplace add risky-dice/claude-setup && claude plugin install j
 | 플러그인 | 출처 | 비고 |
 |---|---|---|
 | `jeongsan` | risky-dice/jeongsan | 내가 만듦 |
-| `live-editor` | risky-dice/live-editor | 내가 만듦. 첫 사용 시 Claude가 `npm install` + `pip install pymupdf` 자동 실행(40~70초) |
+| `live-editor` | risky-dice/live-editor | 내가 만듦. 첫 사용 시 Claude가 `npm install` + venv 로 pymupdf 자동 설치(40~70초). Node·파이썬 런타임은 미리 있어야 함 |
 | `ponytail` | DietrichGebert/ponytail | 남의 스킬. 복사본이 아니라 상류를 가리키므로 업데이트가 따라온다 |
 
 확인:
@@ -40,8 +40,10 @@ claude plugin list
 SessionStart 훅이 두 번 발화한다. 수동본은 `~/.claude/skills/ponytail*` 과
 `~/.claude/settings.json` 훅으로 들어가 있다.
 
-**설치 권한이 막힌 학교 노트북**에서는 npm/pip이 안 되므로 live-editor가 실행되지 않는다.
-jeongsan은 릴리스의 단일 파일로 우회한다:
+**Node.js 나 파이썬이 아예 없는 기계**(런타임 설치에 관리자 권한이 필요한 학교 노트북 등)
+에서는 live-editor 가 실행되지 않는다. 의존성 설치 자체는 권한이 필요 없다 —
+npm 은 `~/live-editor-work/node_modules` 에, 파이썬 쪽은 venv 에 깔면 된다.
+jeongsan 은 파이썬만 있으면 릴리스의 단일 파일로 우회한다:
 
 ```bash
 gh release download v0.1.0 -R risky-dice/jeongsan
