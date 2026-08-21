@@ -1,12 +1,13 @@
 # claude-setup
 
-Claude Code에 스킬 세 개를 설치하는 마켓플레이스. 학교 문서 작업 둘, 코딩 모드 하나.
+Claude Code에 학교 문서 작업용 스킬을 설치하는 마켓플레이스.
 
 | 플러그인 | 하는 일 |
 |---|---|
 | `live-editor` | 한/글(HWP·HWPX)과 텍스트 PDF를 대화창에서 고친다. 바뀐 자리에 형광펜이 칠해진 미리보기가 즉시 갱신되고, 편집된 파일을 그대로 받는다. 외부 API 없이 로컬에서 처리한다 |
 | `jeongsan` | 학교회계 목적사업비 정산 검증. 16개 룰로 기안·견적서를 검산하고 집행내역서를 만든다 |
-| `ponytail` | 가장 게으른 해법을 강제하는 코딩 모드 (외부 스킬) |
+
+코딩용 스킬 `ponytail`도 이 마켓플레이스에 등록돼 있지만 기본 설치에는 넣지 않는다. 아래 "코딩 모드" 절 참고.
 
 ---
 
@@ -54,7 +55,7 @@ claude plugin marketplace add risky-dice/claude-setup
 ```
 
 ```bash
-claude plugin install live-editor@gosu && claude plugin install jeongsan@gosu && claude plugin install ponytail@gosu
+claude plugin install live-editor@gosu && claude plugin install jeongsan@gosu
 ```
 
 터미널 Claude Code 안에서 `/plugin`으로 골라도 결과는 같습니다. 확인:
@@ -99,18 +100,32 @@ cd ~/live-editor-work && node hwpedit.mjs test
 
 ---
 
-## 4. 주의
+## 4. 코딩 모드 (선택)
 
-**`ponytail`을 이미 수동 설치한 기계에는 플러그인본을 넣지 마세요.** 스킬 6개가 두 번,
-SessionStart 훅이 두 번 발화합니다. 수동본은 `~/.claude/skills/ponytail*`과
-`~/.claude/settings.json` 훅으로 들어가 있습니다.
+`ponytail`은 가장 게으른 해법을 강제하는 코딩 모드입니다. **문서 작업만 할 거면 필요 없습니다** —
+스킬 6개와 SessionStart 훅이 붙어 Claude의 코딩 동작 자체를 바꿉니다. 코딩에 쓸 때만 넣으세요.
+
+```bash
+claude plugin install ponytail@gosu
+```
+
+**남의 스킬입니다**(`DietrichGebert/ponytail`). 복사본이 아니라 상류를 가리키므로 업데이트가
+따라옵니다 — 뒤집으면 원작자가 푸시하는 것이 그대로 들어온다는 뜻이기도 합니다.
+
+**이미 손으로 깔아 둔 기계에는 플러그인본을 넣지 마세요.** 스킬 6개가 두 번, SessionStart 훅이
+두 번 발화합니다. 수동본은 `~/.claude/skills/ponytail*`과 `~/.claude/settings.json` 훅으로
+들어가 있습니다.
+
+---
+
+## 5. 주의
 
 **Claude 앱에 번들된 `anthropic-skills:live-editor`는 이것과 다른 구버전입니다.** 이름이 비슷해
 헷갈리기 쉬운데, 스킬 목록에서 `anthropic-skills:` 접두사가 붙은 쪽이 구버전입니다.
 
 ---
 
-## 5. 막히면
+## 6. 막히면
 
 이 세 가지를 함께 보내면 원격에서 판정할 수 있습니다.
 
